@@ -1,10 +1,15 @@
 const express = require('express')
-const app = express()
+
 const registerUser = require('./router/register.js')
 const path = require('path')
+var engine = require('consolidate');
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+
+const app = express()
+
+app.set('views', __dirname + '/views');
+app.engine('html', engine.mustache);
+app.set('view engine', 'html');
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.use('/register', registerUser);
