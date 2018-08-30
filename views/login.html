@@ -1,0 +1,11 @@
+{{#result}}
+    <div>{{ result }}</div>
+{{/result}}
+{{^result}}
+<div>User Login</div>
+{{/result}}
+
+  <form action='/login' method="POST">
+    <input type="text" name="username" />
+    <input type="submit" />
+  </form>
