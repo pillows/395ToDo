@@ -6,7 +6,6 @@ const db = new sqlite3.Database('db/mydb.db');
 
 let checkUser = (username, callback) => {
     db.get(`SELECT username from users WHERE username = ?`, [username], function(err, rows) {
-        console.log(rows);
 
         if(rows == undefined){
           callback(false);

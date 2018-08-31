@@ -1,0 +1,22 @@
+<div>ToDo List</div>
+<div>You are logged in as: {{ username }}</div>
+
+{{#todo}}
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Description</th>
+    <th>Delete</th>
+  </tr>
+  <tr>
+    <td>test</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+</table>
+
+{{/todo}}
+
+{{^todo}}
+<a href="/todo/create">Create your first todo item</a>
+{{/todo}}

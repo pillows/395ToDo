@@ -16,7 +16,8 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "mustache": "^2.3.2",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

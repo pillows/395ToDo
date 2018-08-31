@@ -5,8 +5,8 @@ const db = new sqlite3.Database('db/mydb.db');
 const session = require('express-session')
 
 let loginUser = (username, callback) =>{
-  db.get(`SELECT username from users WHERE username = ?`, [username], function(err, rows) {
-      console.log(rows);
+  db.get(`SELECT * from users WHERE username = ?`, [username], function(err, rows) {
+      
       if(rows == undefined){
         callback(false); // If user does not exist
       }
@@ -18,8 +18,10 @@ let loginUser = (username, callback) =>{
 router.get('/', function(req, res, next) {
   var sessionData = req.session;
   if(sessionData.username)
-    res.redirect("index.html");
-  res.render('login.html');
+    res.redirect("/");
+  res.render('login.html',{
+    title:"Login"
+  });
 });
 
 router.post('/', function(req, res, next) {
