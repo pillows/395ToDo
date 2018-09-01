@@ -21,14 +21,26 @@ let getAll = (username, callback) => {
 
 
 router.get('/', function(req, res, next) {
-    var sessionData = req.session;
+    const sessionData = req.session;
     const username = req.session.username;
 
     if(username != undefined){
       getAll(username, function(callback){
-        let results = callback;
+        const results = callback;
+        const listCount = callback.length;
+        var ifAny = true;
+        if(listCount == 0)
+          ifAny = false;
+
+        console.log(results);
         res.render('todo.html',{
             todo:results,
+            // This will be a true or false value
+            // The purpose of any will be to either display
+            // the table of todo, or instructing the user
+            // to make their first todo.
+            any:ifAny,
+            username: username,
 
         });
       });

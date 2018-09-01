@@ -1,22 +1,61 @@
 <div>ToDo List</div>
 <div>You are logged in as: {{ username }}</div>
 
-{{#todo}}
-<table>
+<br />
+
+{{!
+  Only this is displayed if a user does not have any
+  to do list items.
+}}
+
+{{!
+  ^ signifies if true
+  # signifies if false or does not exist
+}}
+{{#ifAny}}
+<input type="text" name="addItem" id="addItem" autofocus /><button>Add your first item</button>
+{{/ifAny}}
+
+<br />
+
+{{^ifAny}}
+<table id="todoList">
   <tr>
-    <th>Status</th>
     <th>Description</th>
+    <th>Current Status</th>
     <th>Delete</th>
+    <th>
+      Change Status
+    </th>
   </tr>
+
+  {{#todo}}
   <tr>
-    <td>test</td>
-    <td>Smith</td>
-    <td>50</td>
+
+    <td>{{{ description }}}</td>
+    <td>
+
+      {{{ status }}}
+    </td>
+    <td><input type="hidden" value="{{{ username }}}!{{{ @index }}}" /></td>
+
+    <td>
+
+      <select name="status">
+        <option>-</option>
+        <option>Open</option>
+        <option>Done</option>
+        <option>Remove</option>
+      </select>
+    </td>
   </tr>
+  {{/todo}}
+
 </table>
 
-{{/todo}}
+<br />
+<textarea name="addItem" id="addItem" autofocus></textarea>
+<br />
+<button id="submitItem">Add another todo</button>
 
-{{^todo}}
-<a href="/todo/create">Create your first todo item</a>
-{{/todo}}
+{{/ifAny}}

@@ -3,6 +3,8 @@ const express = require('express')
 const registerUser = require('./router/register.js')
 const loginUser = require('./router/login.js')
 const todoList = require('./router/todo.js')
+const todoAdd = require('./router/api/add.js')
+const todoStatus = require('./router/api/status.js')
 const path = require('path')
 const session = require('express-session')
 const uuid = require('uuid/v4')
@@ -47,10 +49,13 @@ app.get('/', (req, res) => {
 app.use('/register', registerUser);
 app.use('/login', loginUser);
 app.use('/todo', todoList);
+app.use('/api/add',todoAdd);
+app.use('/api/status',todoStatus);
 app.use('/logout', (req, res)=>{
   // Only for the purpose of debugging.
-  req.session.destroy();
-  res.redirect('/login');
+  delete req.session.username;
+		res.redirect('/login');
+  //
 })
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
