@@ -1,5 +1,5 @@
 <div>ToDo List</div>
-<div>You are logged in as: {{ username }}</div>
+<div>You are logged in as: {{ username }} [ <a href="/logout">Logout</a> ]</div>
 
 <br />
 
@@ -31,17 +31,17 @@
   <tr>
     <td>
       <div class="centered">
-        <input type="checkbox" checked="true"/>
+        <input type="checkbox"/>
       </div>
 
     </td>
-    <td>{{{ description }}}</td>
+    <td class="description">{{ description }}</td>
     <td class="centered">
 
       {{{ status }}}
     </td>
     <td><div class="delete centered">
-      <button>x</button>
+      <button class="deleteButton">x</button>
     </div><input type="hidden" class="uuid" value="{{{ uuid }}}" /></td>
 
   </tr>

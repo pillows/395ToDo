@@ -6,3 +6,7 @@ table, th, td {
 .centered {
   text-align: center;
 }
+
+.description{
+        white-space: pre-wrap;
+}

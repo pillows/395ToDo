@@ -14,16 +14,19 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-  const result = {
-    "message":"",
-    "uuid":""
-  }
+
+  // Sort of preventing unauthorized access?
+  // Could be made into middleware instead
   const username =req.session.username;
   if(username === undefined){
     result.message = "Not authorized"
     res.json(result);
   }
 
+  const result = {
+    "message":"",
+    "uuid":""
+  }
   const item = req.body.description;
   const uuid = uuidv4();
   result.uuid = uuid;
