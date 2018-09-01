@@ -21,33 +21,29 @@
 {{^ifAny}}
 <table id="todoList">
   <tr>
+    <th>Completed</th>
     <th>Description</th>
     <th>Current Status</th>
     <th>Delete</th>
-    <th>
-      Change Status
-    </th>
   </tr>
 
   {{#todo}}
   <tr>
-
-    <td>{{{ description }}}</td>
     <td>
+      <div class="centered">
+        <input type="checkbox" checked="true"/>
+      </div>
+
+    </td>
+    <td>{{{ description }}}</td>
+    <td class="centered">
 
       {{{ status }}}
     </td>
-    <td><input type="hidden" value="{{{ username }}}!{{{ @index }}}" /></td>
+    <td><div class="delete centered">
+      <button>x</button>
+    </div><input type="hidden" value="{{{ username }}}!{{{ @index }}}" /></td>
 
-    <td>
-
-      <select name="status">
-        <option>-</option>
-        <option>Open</option>
-        <option>Done</option>
-        <option>Remove</option>
-      </select>
-    </td>
   </tr>
   {{/todo}}
 
