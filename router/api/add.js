@@ -15,7 +15,8 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 
   const result = {
-    "message":""
+    "message":"",
+    "uuid":""
   }
   const username =req.session.username;
   if(username === undefined){
@@ -24,9 +25,11 @@ router.post('/', function(req, res, next) {
   }
 
   const item = req.body.description;
+  const uuid = uuidv4();
+  result.uuid = uuid;
   db.run(`INSERT INTO todo(username, description, status, uuid)
   VALUES((?),(?),(?),(?))
-  `,[username, item, "open",uuidv4()]);
+  `,[username, item, "open",uuid]);
   console.log(item);
   result.message = "done";
   res.json(result);
