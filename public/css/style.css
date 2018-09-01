@@ -10,3 +10,7 @@ table, th, td {
 .description{
         white-space: pre-wrap;
 }
+
+.done {
+  text-decoration: line-through;
+}
