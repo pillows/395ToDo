@@ -5,8 +5,9 @@ const db = new sqlite3.Database('db/mydb.db');
 const session = require('express-session')
 
 let loginUser = (username, callback) =>{
+  // Get users who exactly match the username.
   db.get(`SELECT * from users WHERE username = ?`, [username], function(err, rows) {
-      
+
       if(rows == undefined){
         callback(false); // If user does not exist
       }
@@ -17,8 +18,12 @@ let loginUser = (username, callback) =>{
 }
 router.get('/', function(req, res, next) {
   var sessionData = req.session;
+
+  // If the user already has a session then redirect them
+  // to the todo list instead of making them login again
   if(sessionData.username)
     res.redirect("/");
+
   res.render('login.html',{
     title:"Login"
   });
@@ -29,8 +34,10 @@ router.post('/', function(req, res, next) {
 
   loginUser(username, function(callbackLogin){
     if(callbackLogin == true){
+      // Save the user session if login is correct
       var sessionData = req.session;
       sessionData.username = username;
+
       res.redirect("/")
     }
     else{

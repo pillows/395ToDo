@@ -8,9 +8,9 @@ table, th, td {
 }
 
 .description{
-        white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
-.done {
+td.done {
   text-decoration: line-through;
 }
