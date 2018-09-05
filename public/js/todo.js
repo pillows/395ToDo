@@ -9,7 +9,7 @@ $( document ).ready(function() {
     <tr>
     <td>
       <div class="centered">
-        <input type="checkbox"/>
+        <input class="checkbox" id="`+ uuid +`-checkbox" type="checkbox"/>
       </div>
 
     </td>
@@ -20,7 +20,7 @@ $( document ).ready(function() {
         open
       </td>
       <td><div class="delete centered">
-        <button>x</button>
+        <button class="deleteButton">x</button>
       </div><input type="hidden" value="`+ uuid +`" /></td>
 
     </tr>
@@ -54,14 +54,21 @@ $( document ).ready(function() {
     });
 
 
-    $("input[type='checkbox']").on("change", function(){
+    $(document).on("change","[id$=checkbox]", function(){
+      const uuidEl = "#" + $(this)[0].id;
       // NEVER EVER DO THIS. I think.
       // This is parent and child hell
-      const currentStatus = $(this).parent().parent().next().next();
+      let currentStatus = $(this).parent().parent().next().next()[0].innerText;
+      if(currentStatus == "open"){
+        currentStatus = "done";
+      }
+      else if(currentStatus == "done"){
+        currentStatus = "open"
+      }
       const uuid = $(this).parent().parent().next().next().next()[0].children[1].value;
       const data = {
         "uuid":uuid,
-        "status":"done"
+        "status":currentStatus
       }
 
       $.ajax({
@@ -71,12 +78,19 @@ $( document ).ready(function() {
         contentType: "application/json",
         success:function(data){
           console.log(data);
-          currentStatus.text(data.message)
+          if(data.message == "open"){
+            $(uuidEl).parent().parent().next().removeClass("done")
+          }
+          else{
+            $(uuidEl).parent().parent().next().addClass("done")
+          }
+          $(uuidEl).parent().parent().next().next()[0].innerText = data.message;
+
         },
       });
     })
 
-    $(".deleteButton").on("click", function(){
+    $(document).on("click",".deleteButton", function(){
       const uuid = $(this).parent().parent().children()[1].value;
       const parentEl = $(this).parent().parent().parent();
       const data = {

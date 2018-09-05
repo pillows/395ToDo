@@ -3,22 +3,6 @@
 
 <br />
 
-{{!
-  Only this is displayed if a user does not have any
-  to do list items.
-}}
-
-{{!
-  ^ signifies if true
-  # signifies if false or does not exist
-}}
-{{#ifAny}}
-<input type="text" name="addItem" id="addItem" autofocus /><button>Add your first item</button>
-{{/ifAny}}
-
-<br />
-
-{{^ifAny}}
 <table id="todoList">
   <tr>
     <th>Completed</th>
@@ -31,7 +15,7 @@
   <tr>
     <td>
       <div class="centered">
-        <input class="{{ status }}" type="checkbox"/>
+        <input class="{{ status }} checkbox" id="{{ uuid }}-checkbox" type="checkbox"/>
       </div>
 
     </td>
@@ -53,5 +37,3 @@
 <textarea name="addItem" id="addItem" autofocus></textarea>
 <br />
 <button id="submitItem">Add another todo</button>
-
-{{/ifAny}}

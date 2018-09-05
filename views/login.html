@@ -1,12 +1,8 @@
 
 
 
-{{#result}}
     <div>{{ result }}</div>
-{{/result}}
-{{^result}}
-<div>User Login</div>
-{{/result}}
+<div>User Login <a href="/register">or Register a new account</a></div>
 
   <form action='/login' method="POST">
     <input type="text" name="username" autofocus/>

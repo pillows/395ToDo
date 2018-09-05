@@ -25,7 +25,8 @@ router.post('/', function(req, res, next) {
 
   const result = {
     "message":"",
-    "uuid":""
+    "uuid":"",
+    "status":""
   }
   const item = req.body.description;
   const uuid = uuidv4();
@@ -35,6 +36,8 @@ router.post('/', function(req, res, next) {
   `,[username, item, "open",uuid]);
   console.log(item);
   result.message = "done";
+  result.uuid = uuid;
+
   res.json(result);
 });
 module.exports = router;

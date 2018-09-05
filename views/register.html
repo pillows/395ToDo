@@ -1,9 +1,6 @@
-{{#result}}
-    <div>{{ result }}</div>
-{{/result}}
-{{^result}}
+<div>{{{ result }}}</div>
 <div>User registration</div>
-{{/result}}
+
 
   <form action='/register' method="POST">
     <input type="text" name="username" />

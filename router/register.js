@@ -5,13 +5,14 @@ const db = new sqlite3.Database('db/mydb.db');
 
 
 let checkUser = (username, callback) => {
+  // If the user already exists then dont register them
     db.get(`SELECT username from users WHERE username = ?`, [username], function(err, rows) {
 
         if(rows == undefined){
-          callback(false);
+          callback(false); // If the user doesn't exist
         }
         else{
-          callback(true);
+          callback(true); // If there is already a user
         }
 
 
@@ -62,15 +63,19 @@ router.post('/', function(req, res, next) {
     //console.log(username);
     const result = addUser(username, function(callback) {
         var message;
-        console.log(username);
+        console.log("callback value " + typeof callback);
         if (callback == true) {
-            message = "User has been registered";
+            message = "User has been registered <span><a href='/login'>Click here to login</a></span>";
+
         } else {
-            message = `Pick another username. The username "${username}" already exists`;
+            message = "Pick another username. The username \"" + username + "\" already exists";
         }
-        const displayResult = callback ? "true" : "false";
+        console.log("callback " + callback);
+        console.log("message " + message);
+        const displayResult = callback;
 
         res.render("register.html", {
+            displayResult: callback,
             result: message
         });
     });
