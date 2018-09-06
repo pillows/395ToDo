@@ -35,6 +35,21 @@ $( document ).ready(function() {
 
   };
 
+  $("#deleteAll").on("click", function(){
+    const data = {
+      "uuid":uuid,
+      "status":"deleteAll"
+    }
+    $.ajax({
+      url: '/api/status',
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success:function(data){
+        console.log(data);
+      },
+    });
+  })
     $("#submitItem").on("click",function(){
       const todoItem = $("#addItem").val();
       const data = {

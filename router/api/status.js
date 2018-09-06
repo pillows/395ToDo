@@ -49,6 +49,11 @@ router.post('/', function(req, res, next) {
     result.message = status;
     res.json(result);
   }
+  else if(status=="deleteAll"){
+    deleteAll(username);
+    result.message = "deletAll";
+    res.json(result);
+  }
   else {
     deleteItem(uuid);
     result.message = "deleted";
