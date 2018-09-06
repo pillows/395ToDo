@@ -19,6 +19,12 @@ let deleteItem = (uuid) => {
 WHERE uuid = ?;)
   `,[uuid]);
 }
+// Not completely implemented yet
+let deleteAll = (username) => {
+  db.run(`DELETE FROM todo
+WHERE username = ?;)
+  `,[username]);
+}
 router.post('/', function(req, res, next) {
   let result = {
     "message":""
