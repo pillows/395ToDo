@@ -53,7 +53,9 @@ $( document ).ready(function() {
     });
     });
 
-
+    $(document).on("ready",function(){
+      
+    });
     $(document).on("change","[id$=checkbox]", function(){
       const uuidEl = "#" + $(this)[0].id;
       // NEVER EVER DO THIS. I think.

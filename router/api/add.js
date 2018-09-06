@@ -15,6 +15,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 
 
+    const result = {
+      "message":"",
+      "uuid":"",
+      "status":""
+    }
   // Sort of preventing unauthorized access?
   // Could be made into middleware instead
   const username =req.session.username;
@@ -23,11 +28,6 @@ router.post('/', function(req, res, next) {
     res.json(result);
   }
 
-  const result = {
-    "message":"",
-    "uuid":"",
-    "status":""
-  }
   const item = req.body.description;
   const uuid = uuidv4();
   result.uuid = uuid;
