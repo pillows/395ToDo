@@ -53,8 +53,10 @@ $( document ).ready(function() {
     });
     });
 
-    $(document).on("ready",function(){
-      
+    $(window).on("load",function(){
+      $( "input.done" ).each(function( index ) {
+        $(this).attr("checked",true)
+      });
     });
     $(document).on("change","[id$=checkbox]", function(){
       const uuidEl = "#" + $(this)[0].id;
