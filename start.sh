@@ -2,6 +2,6 @@
 
 mkdir db
 touch db/mydb.db
-node createDb.js
 npm install
+node createDb.js
 npm start
